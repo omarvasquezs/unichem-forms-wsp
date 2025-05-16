@@ -156,6 +156,8 @@ class Unichem_Forms_Wsp {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_admin_menu' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 
 	}
 
@@ -172,6 +174,10 @@ class Unichem_Forms_Wsp {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		// Register shortcode and form handler
+		$this->loader->add_action( 'init', $plugin_public, 'register_form_shortcode' );
+		// Output custom CSS in the frontend head
+		$this->loader->add_action( 'wp_head', $plugin_public, 'output_custom_css' );
 
 	}
 

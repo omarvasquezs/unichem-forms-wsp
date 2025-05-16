@@ -2,3 +2,108 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+/* Updated default frontend style for Unichem WhatsApp Form to match screenshot */
+.unichem-whatsapp-form {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 700px;
+  margin: 40px auto 0 auto;
+  font-family: inherit;
+}
+.unichem-whatsapp-form label {
+  display: block;
+  margin-bottom: 24px;
+  font-weight: 400;
+  color: #222;
+  font-size: 1.08em;
+}
+.unichem-whatsapp-form input[type="text"],
+.unichem-whatsapp-form input[type="email"],
+.unichem-whatsapp-form input[type="tel"],
+.unichem-whatsapp-form textarea {
+  width: 100%;
+  padding: 18px 20px;
+  border: 1.5px solid #222;
+  border-radius: 10px;
+  font-size: 1.15em;
+  margin-top: 0;
+  margin-bottom: 0;
+  background: #fff;
+  color: #222;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+}
+.unichem-whatsapp-form input[type="tel"] {
+  border: 1.5px solid #222;
+  background: #fff;
+  color: #222;
+  font-size: 1.15em;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 0;
+  transition: border-color 0.2s;
+}
+.unichem-whatsapp-form input[type="tel"]:focus {
+  border-color: #e74c3c;
+  background: #fff;
+}
+.unichem-whatsapp-form input:focus,
+.unichem-whatsapp-form textarea:focus {
+  border-color: #e74c3c;
+}
+.unichem-whatsapp-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.unichem-whatsapp-form button[type="submit"] {
+  background: #f25454;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 20px 0;
+  width: 100%;
+  font-size: 1.25em;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 32px;
+  margin-bottom: 0;
+  box-shadow: none;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.unichem-whatsapp-form button[type="submit"]:hover {
+  background: #e74c3c;
+}
+.unichem-whatsapp-form input::placeholder,
+.unichem-whatsapp-form textarea::placeholder {
+  color: #888;
+  opacity: 1;
+  font-size: 1em;
+}
+.unichem-whatsapp-form .form-error {
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 18px;
+  font-size: 0.98em;
+}
+.unichem-whatsapp-form .form-success {
+  color: #16a34a;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 18px;
+  font-size: 0.98em;
+}
+.unichem-form-field {
+  margin-bottom: 22px;
+}
