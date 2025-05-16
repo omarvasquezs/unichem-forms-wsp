@@ -163,25 +163,43 @@ class Unichem_Forms_Wsp_Public {
 				$data[$name] = sanitize_textarea_field($_POST[$name] ?? '');
 			} else {
 				$data[$name] = sanitize_text_field($_POST[$name] ?? '');
-			}
+			 }
 		}
-			$country_code = get_option('unichem_forms_wsp_country_code');
-			$phone_number = get_option('unichem_forms_wsp_phone_number');
-			$full_phone = $country_code . $phone_number;
-			// WhatsApp API URL (standard)
-			$base_url = 'https://api.whatsapp.com/send';
-			// Build message text from form data
-			$message = '';
-			foreach ($data as $label => $value) {
-				$message .= $label . ': ' . $value . "\n";
-			}
-			$query = http_build_query([
-				'phone' => $full_phone,
-				'text' => $message
-			]);
-			$redirect_url = $base_url . '?' . $query;
-			wp_redirect($redirect_url);
-			exit;
+		$country_code = get_option('unichem_forms_wsp_country_code');
+		$phone_number = get_option('unichem_forms_wsp_phone_number');
+		$full_phone = $country_code . $phone_number;
+		// WhatsApp API URL (standard)
+		$base_url = 'https://api.whatsapp.com/send';
+		// Build message text from form data, using field labels and line breaks
+		$message = '*¡NUEVO MENSAJE!*' . "\r\n\r\n";
+		foreach ($form_fields as $field) {
+			$name = $field['name'];
+			$label = isset($field['label']) ? $field['label'] : $name;
+			$value = isset($data[$name]) ? $data[$name] : '';
+			$message .= '*' . $label . '*: ' . $value . "\r\n\r\n";
+		}
+		// WhatsApp expects %0A for newlines, so use rawurlencode for the message
+		$wa_url = $base_url . '?phone=' . rawurlencode($full_phone) . '&text=' . rawurlencode($message);
+		?><!DOCTYPE html>
+		<html lang="en">
+		<head>
+		<meta charset="utf-8">
+		<title>Redirecting to WhatsApp...</title>
+		<script>
+		window.onload = function() {
+		  window.location.replace(<?php echo json_encode($wa_url); ?>);
+		};
+		</script>
+		</head>
+		<body>
+		<p><?php esc_html_e('Redirecting to WhatsApp...', 'unichem-forms-wsp'); ?></p>
+		<noscript>
+		  <meta http-equiv="refresh" content="0;url=<?php echo esc_attr($wa_url); ?>">
+		  <p><?php esc_html_e('If you are not redirected, click', 'unichem-forms-wsp'); ?> <a href="<?php echo esc_attr($wa_url); ?>">WhatsApp</a>.</p>
+		</noscript>
+		</body>
+		</html><?php
+		exit;
 	}
 
 	/**
