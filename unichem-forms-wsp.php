@@ -16,7 +16,7 @@
  * Plugin Name:       Unichem Forms - Whatsapp Integration
  * Plugin URI:        https://beacons.ai/omarvasquez
  * Description:       Unichem Forms - WhatsApp Integration allows users to create a custom form that redirect submissions to a WhatsApp API URL, enabling personalized customer engagement via WhatsApp conversations.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Omar Vásquez
  * Author URI:        https://beacons.ai/omarvasquez/
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'UNICHEM_FORMS_WSP_VERSION', '1.0.0' );
+define( 'UNICHEM_FORMS_WSP_VERSION', '1.1.0' );
 
 /**
  * The code that runs during plugin activation.
