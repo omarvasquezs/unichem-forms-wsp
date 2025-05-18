@@ -142,6 +142,27 @@ class Unichem_Forms_Wsp_Admin {
 	}
 
 	/**
+	 * Add plugin settings link to the plugins page.
+	 *
+	 * @since    1.1.0
+	 * @param    array    $links    The array of plugin action links.
+	 * @return   array    The filtered array of plugin action links.
+	 */
+	public function add_plugin_settings_link($links) {
+		// Add form builder link
+		$builder_link = '<a href="' . admin_url('admin.php?page=unichem-forms-wsp') . '">' . __('Form Builder', 'unichem-forms-wsp') . '</a>';
+		
+		// Add settings link
+		$settings_link = '<a href="' . admin_url('admin.php?page=unichem-forms-wsp-settings') . '">' . __('Settings', 'unichem-forms-wsp') . '</a>';
+		
+		// Insert our links at the beginning of the array
+		array_unshift($links, $settings_link);
+		array_unshift($links, $builder_link);
+		
+		return $links;
+	}
+
+	/**
 	 * Output the Unichem WhatsApp Forms instructions box (for admin pages).
 	 */
 	public static function render_instructions_box($context = 'form_builder') {
