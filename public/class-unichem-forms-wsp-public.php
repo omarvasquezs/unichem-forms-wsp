@@ -174,17 +174,17 @@ class Unichem_Forms_Wsp_Public {
 		$phone_number = get_option('unichem_forms_wsp_phone_number');
 		$full_phone = $country_code . $phone_number;
 		// WhatsApp API URL (standard)
-		$base_url = 'https://api.whatsapp.com/send';
-		// Build message text from form data, using field labels and line breaks
-		$message = '*¡NUEVO MENSAJE!*' . "\r\n\r\n";
+		$base_url = 'https://api.whatsapp.com/send/';
+		// Build message text from form data with LF newlines for WhatsApp
+		$message = '*¡NUEVO MENSAJE!*' . "\n\n";
 		foreach ($form_fields as $field) {
 			$name = $field['name'];
 			$label = isset($field['label']) ? $field['label'] : $name;
 			$value = isset($data[$name]) ? $data[$name] : '';
-			$message .= '*' . $label . '*: ' . $value . "\r\n\r\n";
+			$message .= '*' . $label . '*: ' . $value . "\n\n";
 		}
-		// WhatsApp expects %0A for newlines, so use rawurlencode for the message
-		$wa_url = $base_url . '?phone=' . rawurlencode($full_phone) . '&text=' . rawurlencode($message);
+		// WhatsApp expects %0A for newlines and + for spaces, so use urlencode for query
+		$wa_url = $base_url . '?phone=' . urlencode($full_phone) . '&text=' . urlencode($message);
 		?><!DOCTYPE html>
 		<html lang="en">
 		<head>
